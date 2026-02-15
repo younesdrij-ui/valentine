@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Will you be my Valentine?</title>
+
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: linear-gradient(135deg, #ff9aa2, #ff4d6d);
+        height: 100vh;
+      }
+
+      /* Coeurs en background */
+      .heart {
+        position: absolute;
+        color: #ff1744;
+        font-size: 24px;
+        animation: float 6s linear infinite;
+      }
+
+      @keyframes float {
+        from {
+          transform: translateY(100vh);
+          opacity: 1;
+        }
+        to {
+          transform: translateY(-10vh);
+          opacity: 0;
+        }
+      }
+
+      .container {
+        position: relative;
+        top: 35%;
+        color: white;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+
+      button {
+        padding: 15px 30px;
+        font-size: 18px;
+        margin: 10px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      #yesBtn {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      #noBtn {
+        background-color: #f44336;
+        color: white;
+        position: absolute;
+      }
+
+      #message {
+        display: none;
+        position: absolute;
+        top: 20%;
+        left: 10%;
+        right: 10%;
+        color: white;
+        font-size: 22px;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 15px;
+      }
+
+      #nextBtn {
+        display: none;
+        margin-top: 20px;
+        background-color: #2196f3;
+        color: white;
+      }
+
+      /* Fleurs */
+      .flower {
+        position: absolute;
+        font-size: 30px;
+        animation: fall 4s linear infinite;
+      }
+
+      @keyframes fall {
+        from {
+          transform: translateY(-10vh);
+        }
+        to {
+          transform: translateY(100vh);
+        }
+      }
+
+      /* Feux d'artifice */
+      .firework {
+        position: absolute;
+        font-size: 35px;
+        animation: explode 1s ease-out forwards;
+      }
+
+      @keyframes explode {
+        from {
+          transform: scale(0);
+          opacity: 1;
+        }
+        to {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container" id="main">
+      <h1>Sarourti ❤️ will you be my valentine?</h1>
+      <button id="yesBtn">YES</button>
+      <button id="noBtn">NO</button>
+    </div>
+
+    <div id="message">
+      Je t'aime mon amour 💖<br /><br />
+      Je te promets d’être toujours à tes côtés, de te soutenir dans chaque rêve
+      et de construire avec toi une vie pleine d’amour, de respect et de
+      bonheur.
+      <br /><br />
+      <button id="nextBtn">Suivant</button>
+    </div>
+
+    <script>
+      /* Générer des coeurs */
+      function createHearts() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }
+      setInterval(createHearts, 300);
+
+      /* Bouton NO qui esquive */
+      const noBtn = document.getElementById("noBtn");
+      noBtn.addEventListener("mouseover", () => {
+        noBtn.style.left = Math.random() * 80 + "vw";
+        noBtn.style.top = Math.random() * 80 + "vh";
+      });
+
+      /* Clique YES */
+      document.getElementById("yesBtn").onclick = () => {
+        document.getElementById("main").style.display = "none";
+        document.getElementById("message").style.display = "block";
+        document.getElementById("nextBtn").style.display = "inline-block";
+
+        /* Fleurs */
+        setInterval(() => {
+          const flower = document.createElement("div");
+          flower.className = "flower";
+          flower.innerHTML = "🌸";
+          flower.style.left = Math.random() * 100 + "vw";
+          document.body.appendChild(flower);
+          setTimeout(() => flower.remove(), 4000);
+        }, 200);
+
+        /* Feux d'artifice */
+        setInterval(() => {
+          const firework = document.createElement("div");
+          firework.className = "firework";
+          firework.innerHTML = "🎆";
+          firework.style.left = Math.random() * 100 + "vw";
+          firework.style.top = Math.random() * 100 + "vh";
+          document.body.appendChild(firework);
+          setTimeout(() => firework.remove(), 1000);
+        }, 300);
+      };
+
+      /* Bouton suivant */
+      document.getElementById("nextBtn").onclick = () => {
+        document.getElementById("message").innerHTML =
+          "<h2>Voici votre code : 18-7-2025 💌</h2>";
+      };
+    </script>
+  </body>
+</html>
